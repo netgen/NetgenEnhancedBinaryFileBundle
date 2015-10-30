@@ -1,0 +1,17 @@
+{
+    "name": "netgen/enhanced-binary-file-bundle",
+    "description": "Netgen Enhanced Binary File bundle for eZ Publish",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Netgen",
+            "homepage": "http://www.netgenlabs.com"
+        }
+    ],
+    "require": {
+        "ezsystems/ezpublish-kernel": "*"
+    },
+    "autoload": {
+        "psr-4": { "Netgen\\Bundle\\EnhancedBinaryFileBundle\\": "" }
+    }
+}
