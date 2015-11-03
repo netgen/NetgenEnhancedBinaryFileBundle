@@ -1,40 +1,22 @@
 parameters:
-  mime.default.3gp.Types:
-    - video/3gpp
-    - audio/3gpp
-  mime.default.af.Types:
-    - audio/aiff
-    - audio/x-aiff
-    - audio/x-pn-aiff
-  mime.default.ai.Types:
-    - application/postscript
-  mime.default.aiff.Types:
-    - audio/aiff
-    - audio/x-aiff
-    - audio/x-pn-aiff
-  mime.default.asc.Types:
-    - text/plain
-  mime.default.asf.Types:
-    - video/x-ms-asf
-  mime.default.au.Types:
-    - audio/basic
-    - audio/x-pn-au
-  mime.default.avi.Types:
-    - video/x-msvideo
-
+  mime.default.doc.Types:
+    - application/msword
+# the following entry did not exist in module.ini.append but it's a likely feature request
+# so just uncomment when it's needed
+#
+#  mime.default.docx.Types:
+#    - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+  mime.default.gif.Types:
+    - image/gif
   mime.default.jpg.Types:
     - image/jpeg
   mime.default.jpe.Types:
     - image/jpeg
   mime.default.jpeg.Types:
     - image/jpeg
-
-  # BEGIN ngmore/jwplayer additions
-  mime.default.m4v.Types:
-    - video/mp4
-  mime.default.f4v.Types:
-    - video/mp4
-  mime.default.flv.Types:
-    - video/flv
-  # END ngmore/jwplayer additions
-
+  mime.default.png.Types:
+    - image/png
+  mime.default.sxw.Types:
+    - application/vnd.sun.xml.writer
+  mime.default.txt.Types:
+   - text/plain
