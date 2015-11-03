@@ -9,7 +9,8 @@
         }
     ],
     "require": {
-        "ezsystems/ezpublish-kernel": "*"
+        "ezsystems/ezpublish-kernel": "*",
+        "netgen/enhancedezbinaryfile": "~4.5"
     },
     "autoload": {
         "psr-4": { "Netgen\\Bundle\\EnhancedBinaryFileBundle\\": "" }
