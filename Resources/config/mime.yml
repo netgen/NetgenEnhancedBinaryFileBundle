@@ -19,4 +19,4 @@ parameters:
   mime.default.sxw.Types:
     - application/vnd.sun.xml.writer
   mime.default.txt.Types:
-   - text/plain
+    - text/plain
