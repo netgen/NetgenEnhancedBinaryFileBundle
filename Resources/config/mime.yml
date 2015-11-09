@@ -20,3 +20,5 @@ parameters:
     - application/vnd.sun.xml.writer
   mime.default.txt.Types:
     - text/plain
+  mime.default.pdf.Types:
+    - application/pdf
