@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\Yaml\Yaml;
 
-class NetgenEnhancedBinaryFileExtension extends Extension implements PrependExtensionInterface
+class NetgenEnhancedBinaryFileExtension extends Extension
 {
     /**
      * {@inheritDoc}
