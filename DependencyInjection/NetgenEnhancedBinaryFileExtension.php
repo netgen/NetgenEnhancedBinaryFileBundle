@@ -26,17 +26,4 @@ class NetgenEnhancedBinaryFileExtension extends Extension implements PrependExte
         $loader->load( 'mime.yml' );
 
     }
-
-    /**
-     * Allow an extension to prepend the extension configurations.
-     *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     */
-    public function prepend( ContainerBuilder $container )
-    {
-        $configFile = __DIR__ . '/../Resources/config/ezpublish.yml';
-        $config = Yaml::parse( file_get_contents( $configFile ) );
-        $container->prependExtensionConfig( 'ezpublish', $config );
-        $container->addResource( new FileResource( $configFile ) );
-    }
 }
