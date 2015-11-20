@@ -19,6 +19,7 @@ class NetgenEnhancedBinaryFileExtension extends Extension
 
         $loader = new Loader\YamlFileLoader( $container, new FileLocator( __DIR__ . '/../Resources/config' ) );
         $loader->load( 'fieldtypes.yml' );
+        $loader->load( 'field_type_handlers.yml' );
         $loader->load( 'storage_engines.yml' );
         $loader->load( 'mime.yml' );
 

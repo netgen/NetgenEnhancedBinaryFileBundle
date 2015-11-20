@@ -12,6 +12,9 @@
         "ezsystems/ezpublish-kernel": "*",
         "netgen/enhancedezbinaryfile": "~4.5"
     },
+    "suggest": {
+        "netgen/ez-forms-bundle": "^1.1"
+    },
     "autoload": {
         "psr-4": { "Netgen\\Bundle\\EnhancedBinaryFileBundle\\": "" }
     }
