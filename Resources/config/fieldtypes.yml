@@ -7,8 +7,8 @@ services:
       class: %ezpublish.fieldType.enhancedezbinaryfile.class%
       parent: ezpublish.fieldType
       arguments:
-        - @ezpublish.core.io.mimetypedetector
-        - @ezpublish.config.resolver
+        - "@ezpublish.core.io.mimetypedetector"
+        - "@ezpublish.config.resolver"
       tags:
           - {name: ezpublish.fieldType, alias: enhancedezbinaryfile}
     ezpublish.fieldType.enhancedezbinaryfile.storage_gateway:
@@ -20,8 +20,8 @@ services:
         class: eZ\Publish\Core\FieldType\BinaryBase\BinaryBaseStorage
         arguments:
             - []
-            - @ezpublish.fieldType.ezbinaryfile.io_service
-            - @ezpublish.fieldType.ezbinaryfile.pathGenerator
-            - @ezpublish.core.io.mimeTypeDetector
+            - "@ezpublish.fieldType.ezbinaryfile.io_service"
+            - "@ezpublish.fieldType.ezbinaryfile.pathGenerator"
+            - "@ezpublish.core.io.mimeTypeDetector"
         tags:
             - {name: ezpublish.fieldType.externalStorageHandler, alias: enhancedezbinaryfile }
