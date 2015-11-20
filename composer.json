@@ -13,7 +13,7 @@
         "netgen/enhancedezbinaryfile": "~4.5"
     },
     "suggest": {
-        "netgen/ez-forms-bundle": "^1.1"
+        "netgen/ez-forms-bundle": "Allows use of Enhanced Binary File with Symfony forms"
     },
     "autoload": {
         "psr-4": { "Netgen\\Bundle\\EnhancedBinaryFileBundle\\": "" }
