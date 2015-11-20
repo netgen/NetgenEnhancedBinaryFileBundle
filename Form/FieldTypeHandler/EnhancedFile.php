@@ -98,10 +98,8 @@ class EnhancedFile extends FieldTypeHandler
             $options["constraints"][] = new Constraints\File( $constraints );
         }
 
-        // Image should not be erased (updated as empty) if nothing is selected in file input
+        // EnhancedBinaryFile should not be erased (updated as empty) if nothing is selected in file input
         $this->skipEmptyUpdate( $formBuilder, $fieldDefinition->identifier );
-
-        //$options["block_name"] = "ezforms_image";
 
         $formBuilder->add( $fieldDefinition->identifier, "file", $options );
     }
