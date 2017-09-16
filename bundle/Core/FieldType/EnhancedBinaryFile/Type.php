@@ -10,15 +10,11 @@
 namespace Netgen\Bundle\EnhancedBinaryFileBundle\Core\FieldType\EnhancedBinaryFile;
 
 use eZ\Publish\API\Repository\Values\ContentType\FieldDefinition;
-use eZ\Publish\Core\FieldType\BinaryBase\Type as BinaryBaseType;
 use eZ\Publish\Core\FieldType\ValidationError;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use eZ\Publish\SPI\IO\MimeTypeDetector;
-use eZ\Publish\SPI\Persistence\Content\FieldValue;
 use eZ\Publish\SPI\FieldType\Value as SPIValue;
-use eZ\Publish\Core\FieldType\Value as BaseValue;
 use eZ\Publish\Core\FieldType\BinaryFile\Type as BinaryFileType;
-use Netgen\Bundle\EnhancedBinaryFileBundle\Core\FieldType\Validator\FileTypeValidator;
 
 class Type extends BinaryFileType
 {
