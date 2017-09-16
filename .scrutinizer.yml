@@ -1,0 +1,26 @@
+filter:
+    paths:
+        - "bundle/*"
+    excluded_paths:
+        - 'tests/'
+        - 'doc/'
+        - 'build/'
+        - 'vendor/'
+
+checks:
+    php: true
+
+build:
+    environment:
+        php:
+            version: 5.6
+    tests:
+        override:
+            -
+                command: 'vendor/bin/phpunit --coverage-clover=coverage'
+                coverage:
+                    file: 'coverage'
+                    format: 'clover'
+
+tools:
+    external_code_coverage: false
