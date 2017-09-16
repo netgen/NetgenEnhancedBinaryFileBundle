@@ -4,8 +4,8 @@ namespace Netgen\Bundle\EnhancedBinaryFileBundle\Tests\Core\FieldType\EnhancedBi
 
 use eZ\Publish\Core\FieldType\ValidationError;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use eZ\Publish\SPI\IO\MimeTypeDetector;
 use eZ\Publish\Core\Repository\Values\ContentType\FieldDefinition;
+use eZ\Publish\SPI\IO\MimeTypeDetector;
 use Netgen\Bundle\EnhancedBinaryFileBundle\Core\FieldType\EnhancedBinaryFile\Type;
 use Netgen\Bundle\EnhancedBinaryFileBundle\Core\FieldType\EnhancedBinaryFile\Value;
 use PHPUnit\Framework\TestCase;
@@ -47,44 +47,44 @@ class TypeTest extends TestCase
 
     public function testGetFieldTypeIdentifier()
     {
-        $this->assertEquals("enhancedezbinaryfile", $this->type->getFieldTypeIdentifier());
+        $this->assertEquals('enhancedezbinaryfile', $this->type->getFieldTypeIdentifier());
     }
 
     public function testValidate()
     {
-        $fieldDefinition = new FieldDefinition([
-            'fieldSettings' => [
-                'allowedTypes' => 'jpg|pdf|txt'
-            ],
-        ]);
+        $fieldDefinition = new FieldDefinition(array(
+            'fieldSettings' => array(
+                'allowedTypes' => 'jpg|pdf|txt',
+            ),
+        ));
 
-        $value = new Value([
+        $value = new Value(array(
             'path' => $this->file,
-        ]);
+        ));
 
         $this->mimeTypeDetector->expects($this->once())
             ->method('getFromPath')
             ->with($this->file)
             ->willReturn('text/plain');
 
-        $expected = [
+        $expected = array(
             new ValidationError(
-                "This mimeType is not allowed %mimeType%.",
-                "These mimeTypes are not allowed %mimeType%.",
-                [ "mimeType" => 'text/plain' ]
+                'This mimeType is not allowed %mimeType%.',
+                'These mimeTypes are not allowed %mimeType%.',
+                array('mimeType' => 'text/plain')
             ),
-        ];
+        );
 
         $this->assertEquals($expected, $this->type->validate($fieldDefinition, $value));
     }
 
     public function testValidateWithEmptyValue()
     {
-        $fieldDefinition = new FieldDefinition([
-            'fieldSettings' => [
-                'allowedTypes' => 'jpg|pdf|txt'
-            ],
-        ]);
+        $fieldDefinition = new FieldDefinition(array(
+            'fieldSettings' => array(
+                'allowedTypes' => 'jpg|pdf|txt',
+            ),
+        ));
 
         $value = new Value();
 
@@ -93,15 +93,15 @@ class TypeTest extends TestCase
 
     public function testValidateWithMineTypesFromConfig()
     {
-        $fieldDefinition = new FieldDefinition([
-            'fieldSettings' => [
-                'allowedTypes' => 'jpg|pdf|txt'
-            ],
-        ]);
+        $fieldDefinition = new FieldDefinition(array(
+            'fieldSettings' => array(
+                'allowedTypes' => 'jpg|pdf|txt',
+            ),
+        ));
 
-        $value = new Value([
+        $value = new Value(array(
             'path' => $this->file,
-        ]);
+        ));
 
         $this->mimeTypeDetector->expects($this->once())
             ->method('getFromPath')
@@ -111,8 +111,8 @@ class TypeTest extends TestCase
         $this->configResolver->expects($this->any())
             ->method('hasParameter')
             ->will(
-                $this->returnCallback(function($arg) {
-                    if ($arg === 'txt.Types') {
+                $this->returnCallback(function ($arg) {
+                    if ('txt.Types' === $arg) {
                         return true;
                     }
 
@@ -123,7 +123,7 @@ class TypeTest extends TestCase
         $this->configResolver->expects($this->once())
             ->method('getParameter')
             ->with('txt.Types', 'mime')
-            ->willReturn(['text/plain']);
+            ->willReturn(array('text/plain'));
 
         $this->type->validate($fieldDefinition, $value);
     }

@@ -21,6 +21,6 @@ class NetgenEnhancedBinaryFileExtensionTest extends AbstractExtensionTestCase
 
     protected function getMinimalConfiguration()
     {
-        return [];
+        return array();
     }
 }

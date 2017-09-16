@@ -2,25 +2,24 @@
 
 namespace Netgen\Bundle\EnhancedBinaryFileBundle\Form\FieldTypeHandler;
 
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use Netgen\Bundle\EzFormsBundle\Form\FieldTypeHandler;
-use Symfony\Component\Form\FormBuilderInterface;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\ContentType\FieldDefinition;
+use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use eZ\Publish\SPI\FieldType\Value;
-use Symfony\Component\Validator\Constraints;
+use Netgen\Bundle\EzFormsBundle\Form\FieldTypeHandler;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints;
 
 /**
- * Class EnhancedFile
+ * Class EnhancedFile.
  */
 class EnhancedFile extends FieldTypeHandler
 {
-
     /**
      * @param \eZ\Publish\Core\MVC\ConfigResolverInterface $configResolver
      */
-    public function __construct( ConfigResolverInterface $configResolver )
+    public function __construct(ConfigResolverInterface $configResolver)
     {
         $this->configResolver = $configResolver;
     }
@@ -28,7 +27,7 @@ class EnhancedFile extends FieldTypeHandler
     /**
      * {@inheritdoc}
      */
-    public function convertFieldValueToForm( Value $value, FieldDefinition $fieldDefinition = null )
+    public function convertFieldValueToForm(Value $value, FieldDefinition $fieldDefinition = null)
     {
         return null;
     }
@@ -38,18 +37,17 @@ class EnhancedFile extends FieldTypeHandler
      *
      * @param UploadedFile $data
      */
-    public function convertFieldValueFromForm( $data )
+    public function convertFieldValueFromForm($data)
     {
-        if ( $data === null )
-        {
+        if (null === $data) {
             return null;
         }
 
         return array(
-            "inputUri" => $data->getFileInfo()->getRealPath(),
-            "fileName" => $data->getClientOriginalName(),
-            "fileSize" => $data->getSize(),
-            "mimeType" => $data->getClientMimeType(),
+            'inputUri' => $data->getFileInfo()->getRealPath(),
+            'fileName' => $data->getClientOriginalName(),
+            'fileSize' => $data->getSize(),
+            'mimeType' => $data->getClientMimeType(),
         );
     }
 
@@ -61,44 +59,38 @@ class EnhancedFile extends FieldTypeHandler
         FieldDefinition $fieldDefinition,
         $languageCode,
         Content $content = null
-    )
-    {
-        $options = $this->getDefaultFieldOptions( $fieldDefinition, $languageCode, $content );
+    ) {
+        $options = $this->getDefaultFieldOptions($fieldDefinition, $languageCode, $content);
 
-        $maxFileSize = $fieldDefinition->validatorConfiguration["FileSizeValidator"]["maxFileSize"];
+        $maxFileSize = $fieldDefinition->validatorConfiguration['FileSizeValidator']['maxFileSize'];
         $allowedExtensions = $fieldDefinition->fieldSettings['allowedTypes'];
 
-        if ( $maxFileSize !== false || !empty( $allowedExtensions ) )
-        {
+        if (false !== $maxFileSize || !empty($allowedExtensions)) {
             $constraints = array();
 
-            if ( $maxFileSize !== false )
-            {
+            if (false !== $maxFileSize) {
                 $constraints['maxSize'] = $maxFileSize;
             }
 
-            if ( !empty( $allowedExtensions ) )
-            {
-                $allowedExtensions = explode( '|', $allowedExtensions );
+            if (!empty($allowedExtensions)) {
+                $allowedExtensions = explode('|', $allowedExtensions);
 
                 $allowedMimeTypes = array();
 
-                foreach( $allowedExtensions as $allowedExtension )
-                {
-                    if ( $this->configResolver->hasParameter( "{$allowedExtension}.Types", 'mime' ) )
-                    {
-                        $allowedMimeTypes = array_merge( $allowedMimeTypes, $this->configResolver->getParameter( "{$allowedExtension}.Types", 'mime' ) );
+                foreach ($allowedExtensions as $allowedExtension) {
+                    if ($this->configResolver->hasParameter("{$allowedExtension}.Types", 'mime')) {
+                        $allowedMimeTypes = array_merge($allowedMimeTypes, $this->configResolver->getParameter("{$allowedExtension}.Types", 'mime'));
                     }
                 }
                 $constraints['mimeTypes'] = $allowedMimeTypes;
             }
 
-            $options["constraints"][] = new Constraints\File( $constraints );
+            $options['constraints'][] = new Constraints\File($constraints);
         }
 
         // EnhancedBinaryFile should not be erased (updated as empty) if nothing is selected in file input
-        $this->skipEmptyUpdate( $formBuilder, $fieldDefinition->identifier );
+        $this->skipEmptyUpdate($formBuilder, $fieldDefinition->identifier);
 
-        $formBuilder->add( $fieldDefinition->identifier, "file", $options );
+        $formBuilder->add($fieldDefinition->identifier, 'file', $options);
     }
 }

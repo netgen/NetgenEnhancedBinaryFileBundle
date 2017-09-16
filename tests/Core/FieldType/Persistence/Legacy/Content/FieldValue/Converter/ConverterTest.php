@@ -3,11 +3,11 @@
 namespace Netgen\Bundle\EnhancedBinaryFileBundle\Tests\Core\FieldType\Persistence\Legacy\Content\FieldValue\Converter;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use eZ\Publish\SPI\Persistence\Content\FieldValue;
-use eZ\Publish\Core\Persistence\Legacy\Content\StorageFieldValue;
-use eZ\Publish\SPI\Persistence\Content\Type\FieldDefinition;
-use eZ\Publish\SPI\Persistence\Content\FieldTypeConstraints;
 use eZ\Publish\Core\Persistence\Legacy\Content\StorageFieldDefinition;
+use eZ\Publish\Core\Persistence\Legacy\Content\StorageFieldValue;
+use eZ\Publish\SPI\Persistence\Content\FieldTypeConstraints;
+use eZ\Publish\SPI\Persistence\Content\FieldValue;
+use eZ\Publish\SPI\Persistence\Content\Type\FieldDefinition;
 use Netgen\Bundle\EnhancedBinaryFileBundle\Core\Persistence\Legacy\Content\FieldValue\Converter\Converter;
 use PHPUnit\Framework\TestCase;
 
@@ -68,21 +68,21 @@ class ConverterTest extends TestCase
     public function testToStorageFieldDefinition()
     {
         $fieldDefinition = new FieldDefinition();
-        $fieldDefinition->fieldTypeConstraints->validators = [
-            'FileSizeValidator' => [
+        $fieldDefinition->fieldTypeConstraints->validators = array(
+            'FileSizeValidator' => array(
                 'maxFileSize' => 14,
-            ],
-        ];
-        $fieldDefinition->fieldTypeConstraints->fieldSettings = [
-            'allowedTypes' => [
-                'text/plain'
-            ],
-        ];
+            ),
+        );
+        $fieldDefinition->fieldTypeConstraints->fieldSettings = array(
+            'allowedTypes' => array(
+                'text/plain',
+            ),
+        );
         $storage = new StorageFieldDefinition();
         $this->converter->toStorageFieldDefinition($fieldDefinition, $storage);
 
         $this->assertEquals(14, $storage->dataInt1);
-        $this->assertEquals(['text/plain'], $storage->dataText1);
+        $this->assertEquals(array('text/plain'), $storage->dataText1);
     }
 
     public function testToFieldDefinition()
@@ -102,12 +102,12 @@ class ConverterTest extends TestCase
         $fieldDefinition = new FieldDefinition();
         $storage = new StorageFieldDefinition();
         $storage->dataInt1 = 55;
-        $storage->dataText1 = "text/plain";
+        $storage->dataText1 = 'text/plain';
 
         $this->converter->toFieldDefinition($storage, $fieldDefinition);
 
         $this->assertInstanceOf(FieldTypeConstraints::class, $fieldDefinition->fieldTypeConstraints);
         $this->assertEquals(55, $fieldDefinition->fieldTypeConstraints->validators['FileSizeValidator']['maxFileSize']);
-        $this->assertEquals("text/plain", $fieldDefinition->fieldTypeConstraints->fieldSettings['allowedTypes']);
+        $this->assertEquals('text/plain', $fieldDefinition->fieldTypeConstraints->fieldSettings['allowedTypes']);
     }
 }
