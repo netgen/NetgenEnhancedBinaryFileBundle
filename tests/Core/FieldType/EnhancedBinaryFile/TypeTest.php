@@ -108,7 +108,7 @@ class TypeTest extends TestCase
             ->with($this->file)
             ->willReturn('text/plain');
 
-        $this->configResolver->expects($this->any())
+        $this->configResolver->expects($this->exactly(3))
             ->method('hasParameter')
             ->will(
                 $this->returnCallback(function ($arg) {

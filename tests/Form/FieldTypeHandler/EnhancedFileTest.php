@@ -60,8 +60,30 @@ class EnhancedFileTest extends TestCase
     public function testBuildFieldCreateForm()
     {
         $formBuilder = $this->createMock(FormBuilderInterface::class);
-        $fieldDefinition = new FieldDefinition();
+        $fieldDefinition = new FieldDefinition(array(
+            'fieldSettings' => array(
+                'allowedTypes' => 'jpg|pdf|txt',
+            ),
+        ));
         $lang = 'eng_US';
+
+        $this->configResolver->expects($this->exactly(3))
+            ->method('hasParameter')
+            ->will(
+                $this->returnCallback(function ($arg) {
+                    if ('txt.Types' === $arg) {
+                        return true;
+                    }
+
+                    return false;
+                })
+            );
+
+        $this->configResolver->expects($this->once())
+            ->method('getParameter')
+            ->with('txt.Types', 'mime')
+            ->willReturn(array('text/plain'));
+
         $this->handler->buildFieldCreateForm($formBuilder, $fieldDefinition, $lang);
     }
 }
