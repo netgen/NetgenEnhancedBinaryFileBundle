@@ -3,11 +3,12 @@
 namespace Netgen\Bundle\EnhancedBinaryFileBundle\Tests\Form\FieldTypeHandler;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use eZ\Publish\Core\Repository\Values\ContentType\FieldDefinition;
 use Netgen\Bundle\EnhancedBinaryFileBundle\Core\FieldType\EnhancedBinaryFile\Value;
 use Netgen\Bundle\EnhancedBinaryFileBundle\Form\FieldTypeHandler\EnhancedFile;
 use Netgen\Bundle\EzFormsBundle\Form\FieldTypeHandler;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Finder\SplFileInfo;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class EnhancedFileTest extends TestCase
@@ -15,7 +16,7 @@ class EnhancedFileTest extends TestCase
     /**
      * @var EnhancedFile
      */
-    protected  $handler;
+    protected $handler;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
@@ -54,5 +55,13 @@ class EnhancedFileTest extends TestCase
         $this->assertEquals($file->getClientOriginalName(), $result['fileName']);
         $this->assertEquals($file->getSize(), $result['fileSize']);
         $this->assertEquals($file->getClientMimeType(), $result['mimeType']);
+    }
+
+    public function testBuildFieldCreateForm()
+    {
+        $formBuilder = $this->createMock(FormBuilderInterface::class);
+        $fieldDefinition = new FieldDefinition();
+        $lang = 'eng_US';
+        $this->handler->buildFieldCreateForm($formBuilder, $fieldDefinition, $lang);
     }
 }

@@ -127,4 +127,46 @@ class TypeTest extends TestCase
 
         $this->type->validate($fieldDefinition, $value);
     }
+
+    public function testValidateFieldSettingsWithEmptyArray()
+    {
+        $result = $this->type->validateFieldSettings([]);
+        $this->assertTrue(is_array($result));
+        $this->assertTrue(empty($result));
+    }
+
+    public function testValidateFieldSettingsWithBool()
+    {
+        $result = $this->type->validateFieldSettings(false);
+        $this->assertTrue(is_array($result));
+        $this->assertFalse(empty($result));
+        $this->assertEquals(new ValidationError('Field settings must be in form of an array'), $result[0]);
+    }
+
+    public function testValidateFieldSettingsWithFieldSettings()
+    {
+        $fieldSettings = [
+            "allowedTypes" => [],
+            "some_settings" => [],
+        ];
+        $result = $this->type->validateFieldSettings($fieldSettings);
+        $this->assertTrue(is_array($result));
+        $this->assertFalse(empty($result));
+        $this->assertEquals(
+            new ValidationError(
+                "Setting '%setting%' is unknown",
+                null,
+                ['setting' => 'some_settings']
+            ),
+            $result[0]
+        );
+    }
+
+    public function testFromHash()
+    {
+        $result = $this->type->fromHash([]);
+
+        $this->assertInstanceOf(Value::class, $result);
+        $this->assertEquals(new Value(), $result);
+    }
 }
