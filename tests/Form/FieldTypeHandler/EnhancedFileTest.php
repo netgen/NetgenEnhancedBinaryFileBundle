@@ -50,7 +50,7 @@ class EnhancedFileTest extends TestCase
         $file->getClientMimeType();
         $result = $this->handler->convertFieldValueFromForm($file);
 
-        $this->assertTrue(is_array($result));
+        $this->assertInternalType('array', $result);
         $this->assertEquals($file->getFileInfo()->getRealPath(), $result['inputUri']);
         $this->assertEquals($file->getClientOriginalName(), $result['fileName']);
         $this->assertEquals($file->getSize(), $result['fileSize']);
