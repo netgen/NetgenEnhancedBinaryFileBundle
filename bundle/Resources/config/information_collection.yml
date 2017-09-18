@@ -1,0 +1,7 @@
+services:
+    ezpublish.enhancedezbinaryfile.information_collection.field_handler:
+        class: Netgen\Bundle\EnhancedBinaryFileBundle\FieldHandler\EnhancedBinaryFileHandler
+        arguments:
+            - "@ezpublish.core.io.service"
+        tags:
+            - { name: netgen_information_collection.field_handler.custom }
