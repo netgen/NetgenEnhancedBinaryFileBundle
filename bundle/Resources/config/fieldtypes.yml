@@ -1,0 +1,24 @@
+services:
+    ezpublish.fieldType.enhancedezbinaryfile:
+        class: Netgen\Bundle\EnhancedBinaryFileBundle\Core\FieldType\EnhancedBinaryFile\Type
+        parent: ezpublish.fieldType
+        arguments:
+            - "@ezpublish.core.io.mimetypedetector"
+            - "@ezpublish.config.resolver"
+        tags:
+            - { name: ezpublish.fieldType, alias: enhancedezbinaryfile }
+
+    ezpublish.fieldType.enhancedezbinaryfile.storage_gateway:
+        class: eZ\Publish\Core\FieldType\BinaryFile\BinaryFileStorage\Gateway\LegacyStorage
+        tags:
+            - { name: ezpublish.fieldType.externalStorageHandler.gateway, alias: enhancedezbinaryfile, identifier: LegacyStorage }
+
+    ezpublish.enhancedezbinaryfile.external_storage_handler:
+        class: eZ\Publish\Core\FieldType\BinaryBase\BinaryBaseStorage
+        arguments:
+            - "@ezpublish.fieldType.ezbinaryfile.storage_gateway"
+            - "@ezpublish.fieldType.ezbinaryfile.io_service"
+            - "@ezpublish.fieldType.ezbinaryfile.pathGenerator"
+            - "@ezpublish.core.io.mimeTypeDetector"
+        tags:
+            - { name: ezpublish.fieldType.externalStorageHandler, alias: enhancedezbinaryfile }

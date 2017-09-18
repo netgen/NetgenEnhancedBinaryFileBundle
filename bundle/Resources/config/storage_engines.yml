@@ -1,0 +1,11 @@
+services:
+    ezpublish.fieldType.enhancedezbinaryfile.converter:
+        class: Netgen\Bundle\EnhancedBinaryFileBundle\Core\Persistence\Legacy\Content\FieldValue\Converter\Converter
+        tags:
+            - { name: ezpublish.storageEngine.legacy.converter, alias: enhancedezbinaryfile }
+
+    ezpublish.fieldType.indexable.enhancedezbinaryfile:
+        class: eZ\Publish\Core\FieldType\Unindexed
+        tags:
+            - { name: ezpublish.fieldType.indexable, alias: enhancedezbinaryfile }
+
