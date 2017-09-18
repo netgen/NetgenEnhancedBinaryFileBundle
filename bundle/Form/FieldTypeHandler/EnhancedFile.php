@@ -7,6 +7,7 @@ use eZ\Publish\API\Repository\Values\ContentType\FieldDefinition;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use eZ\Publish\SPI\FieldType\Value;
 use Netgen\Bundle\EzFormsBundle\Form\FieldTypeHandler;
+use Netgen\Bundle\EnhancedBinaryFileBundle\Core\FieldType\EnhancedBinaryFile\Value as EnhancedFileValue;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints;
@@ -43,11 +44,13 @@ class EnhancedFile extends FieldTypeHandler
             return null;
         }
 
-        return array(
-            'inputUri' => $data->getFileInfo()->getRealPath(),
-            'fileName' => $data->getClientOriginalName(),
-            'fileSize' => $data->getSize(),
-            'mimeType' => $data->getClientMimeType(),
+        return new EnhancedFileValue(
+            [
+                'path' => $data->getFileInfo()->getRealPath(),
+                'fileName' => $data->getClientOriginalName(),
+                'fileSize' => $data->getSize(),
+                'mimeType' => $data->getClientMimeType(),
+            ]
         );
     }
 

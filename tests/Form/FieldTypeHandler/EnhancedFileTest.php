@@ -50,11 +50,11 @@ class EnhancedFileTest extends TestCase
         $file->getClientMimeType();
         $result = $this->handler->convertFieldValueFromForm($file);
 
-        $this->assertInternalType('array', $result);
-        $this->assertEquals($file->getFileInfo()->getRealPath(), $result['inputUri']);
-        $this->assertEquals($file->getClientOriginalName(), $result['fileName']);
-        $this->assertEquals($file->getSize(), $result['fileSize']);
-        $this->assertEquals($file->getClientMimeType(), $result['mimeType']);
+        $this->assertInstanceOf(Value::class, $result);
+        $this->assertEquals($file->getFileInfo()->getRealPath(), $result->inputUri);
+        $this->assertEquals($file->getClientOriginalName(), $result->fileName);
+        $this->assertEquals($file->getSize(), $result->fileSize);
+        $this->assertEquals($file->getClientMimeType(), $result->mimeType);
     }
 
     public function testBuildFieldCreateForm()
