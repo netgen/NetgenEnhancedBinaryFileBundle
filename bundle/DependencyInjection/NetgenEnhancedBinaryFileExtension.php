@@ -18,6 +18,11 @@ class NetgenEnhancedBinaryFileExtension extends Extension
         $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        if (class_exists(\eZ\Publish\SPI\FieldType\GatewayBasedStorage::class)) {
+            $loader->load('fieldtypes_after_611.yml');
+        } else {
+            $loader->load('fieldtypes_before_611.yml');
+        }
         $loader->load('fieldtypes.yml');
         $loader->load('field_type_handlers.yml');
         $loader->load('storage_engines.yml');
