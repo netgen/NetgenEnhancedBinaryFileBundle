@@ -128,6 +128,43 @@ class TypeTest extends TestCase
         $this->type->validate($fieldDefinition, $value);
     }
 
+    public function testValidateWithNoMimeTypesFromConfig()
+    {
+        $fieldDefinition = new FieldDefinition(array(
+            'fieldSettings' => array(
+                'allowedTypes' => 'jpg|pdf|txt',
+            ),
+        ));
+
+        $value = new Value(array(
+            'path' => $this->file,
+        ));
+
+        $this->mimeTypeDetector->expects($this->once())
+            ->method('getFromPath')
+            ->with($this->file)
+            ->willReturn('text/plain');
+
+        $this->configResolver->expects($this->exactly(3))
+            ->method('hasParameter')
+            ->will(
+                $this->returnCallback(function ($arg) {
+                    if ('txt.Types' === $arg) {
+                        return true;
+                    }
+
+                    return false;
+                })
+            );
+
+        $this->configResolver->expects($this->once())
+            ->method('getParameter')
+            ->with('txt.Types', 'mime')
+            ->willReturn(array('something'));
+
+        $this->type->validate($fieldDefinition, $value);
+    }
+
     public function testValidateFieldSettingsWithEmptyArray()
     {
         $result = $this->type->validateFieldSettings(array());
