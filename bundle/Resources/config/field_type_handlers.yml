@@ -4,4 +4,4 @@ services:
         arguments:
             - "@ezpublish.config.resolver"
         tags:
-            - {name: netgen.ezforms.form.fieldtype_handler, alias: enhancedezbinaryfile}
+            - { name: netgen.ezforms.form.fieldtype_handler, alias: enhancedezbinaryfile }

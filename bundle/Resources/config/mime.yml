@@ -1,24 +1,27 @@
 parameters:
-  mime.default.doc.Types:
+    mime.default.doc.Types:
     - application/msword
-# the following entry did not exist in module.ini.append but it's a likely feature request
-# so just uncomment when it's needed
-#
-#  mime.default.docx.Types:
-#    - application/vnd.openxmlformats-officedocument.wordprocessingml.document
-  mime.default.gif.Types:
+    mime.default.xsl.Types:
+    - application/vnd.ms-excel
+    mime.default.xlsx.Types:
+    - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+    mime.default.docx.Types:
+    - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+    mime.default.gif.Types:
     - image/gif
-  mime.default.jpg.Types:
+    mime.default.jpg.Types:
     - image/jpeg
-  mime.default.jpe.Types:
+    mime.default.jpe.Types:
     - image/jpeg
-  mime.default.jpeg.Types:
+    mime.default.jpeg.Types:
     - image/jpeg
-  mime.default.png.Types:
+    mime.default.png.Types:
     - image/png
-  mime.default.sxw.Types:
+    mime.default.sxw.Types:
     - application/vnd.sun.xml.writer
-  mime.default.txt.Types:
+    mime.default.txt.Types:
     - text/plain
-  mime.default.pdf.Types:
+    mime.default.pdf.Types:
     - application/pdf
+    mime.default.zip.Types:
+    - application/zip
