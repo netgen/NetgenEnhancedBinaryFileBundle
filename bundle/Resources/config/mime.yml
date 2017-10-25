@@ -1,27 +1,28 @@
 parameters:
     mime.default.doc.Types:
-    - application/msword
+        - application/msword
     mime.default.xsl.Types:
-    - application/vnd.ms-excel
+        - application/vnd.ms-excel
     mime.default.xlsx.Types:
-    - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+        - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
     mime.default.docx.Types:
-    - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+        - application/vnd.openxmlformats-officedocument.wordprocessingml.document
     mime.default.gif.Types:
-    - image/gif
+        - image/gif
     mime.default.jpg.Types:
-    - image/jpeg
+        - image/jpeg
     mime.default.jpe.Types:
-    - image/jpeg
+        - image/jpeg
     mime.default.jpeg.Types:
-    - image/jpeg
+        - image/jpeg
     mime.default.png.Types:
-    - image/png
+        - image/png
     mime.default.sxw.Types:
-    - application/vnd.sun.xml.writer
+        - application/vnd.sun.xml.writer
     mime.default.txt.Types:
-    - text/plain
+        - text/plain
     mime.default.pdf.Types:
-    - application/pdf
+        - application/pdf
     mime.default.zip.Types:
-    - application/zip
+        - application/zip
+        - application/octet-stream
