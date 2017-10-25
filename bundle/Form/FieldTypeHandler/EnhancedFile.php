@@ -72,7 +72,7 @@ class EnhancedFile extends FieldTypeHandler
             $constraints = array();
 
             if (false !== $maxFileSize) {
-                $constraints['maxSize'] = $maxFileSize;
+                $constraints['maxSize'] = strval($maxFileSize) . "M";
             }
 
             if (!empty($allowedExtensions)) {
