@@ -74,8 +74,8 @@ class EnhancedBinaryFileHandler implements CustomLegacyFieldHandlerInterface
         $binaryFileList = $doc->createElement( 'binaryfile-attributes' );
 
         $fileInfo = [
-            'Filename' => $binaryFile->uri,
-            'OriginalFilename' => $value->fileName,
+            'Filename' => htmlentities($binaryFile->uri),
+            'OriginalFilename' => htmlentities($value->fileName),
             'Size' => $value->fileSize,
         ];
 
