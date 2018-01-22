@@ -9,7 +9,7 @@
         "ezplatform"
     ],
     "homepage": "https://github.com/netgen/NetgenEnhancedBinaryFileBundle",
-    "license": "GPL-2.0",
+    "license": "GPL-2.0-only",
     "authors": [
         {
             "name": "Netgen",
