@@ -1,7 +1,7 @@
 parameters:
     mime.default.doc.Types:
         - application/msword
-    mime.default.xsl.Types:
+    mime.default.xls.Types:
         - application/vnd.ms-excel
     mime.default.xlsx.Types:
         - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
