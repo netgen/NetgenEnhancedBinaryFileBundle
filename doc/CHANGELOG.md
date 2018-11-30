@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.3] - unreleased
+### Added
+- support for eZ admin v2 by @darinda
+
 ## [2.0.2] - 10-25-2017
 ### Added
 - added zip, docx, xsl, xslx mime types
