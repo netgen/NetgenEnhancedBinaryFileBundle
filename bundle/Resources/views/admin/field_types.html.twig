@@ -1,0 +1,14 @@
+{% extends 'EzSystemsRepositoryFormsBundle:ContentType:field_types.html.twig' %}
+{% block enhancedezbinaryfile_field_definition_edit %}
+    <div class="enhancedezbinaryfile-validator max-file-size{% if group_class is not empty %} {{ group_class }}{% endif %}">
+        {{- form_label(form.maxSize) -}}
+        {{- form_errors(form.maxSize) -}}
+        {{- form_widget(form.maxSize) -}}
+    </div>
+
+    <div class="enhancedezbinaryfile-validator allowed-file-types{% if group_class is not empty %} {{ group_class }}{% endif %}">
+        {{- form_label(form.allowedTypes) -}}
+        {{- form_errors(form.allowedTypes) -}}
+        {{- form_widget(form.allowedTypes) -}}
+    </div>
+{% endblock %}

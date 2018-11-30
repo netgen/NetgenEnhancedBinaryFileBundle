@@ -1,0 +1,3 @@
+field_definition:
+  enhancedbinaryfile:
+    allowedTypes: Erlaubte Dateiformate (komma-separiert)
