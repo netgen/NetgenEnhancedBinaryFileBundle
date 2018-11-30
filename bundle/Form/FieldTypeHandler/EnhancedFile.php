@@ -69,10 +69,10 @@ class EnhancedFile extends FieldTypeHandler
         $maxFileSize = $fieldDefinition->validatorConfiguration['FileSizeValidator']['maxFileSize'];
         $allowedExtensions = $fieldDefinition->fieldSettings['allowedTypes'];
 
-        if (false !== $maxFileSize || !empty($allowedExtensions)) {
+        if (null !== $maxFileSize || !empty($allowedExtensions)) {
             $constraints = array();
 
-            if (false !== $maxFileSize && !empty($maxFileSize)) {
+            if (null !== $maxFileSize && !empty($maxFileSize)) {
                 $constraints['maxSize'] = strval($maxFileSize) . "M";
             }
 
