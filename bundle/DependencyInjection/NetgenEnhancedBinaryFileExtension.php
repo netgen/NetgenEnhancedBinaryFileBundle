@@ -3,12 +3,31 @@
 namespace Netgen\Bundle\EnhancedBinaryFileBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\Yaml\Yaml;
 
-class NetgenEnhancedBinaryFileExtension extends Extension
+class NetgenEnhancedBinaryFileExtension extends Extension implements PrependExtensionInterface
 {
+    /**
+     * Preprend ezpublish configuration to make the field templates
+     * visibile to the admin template engine
+     *
+     * @param ContainerBuilder $container
+     */
+    public function prepend( ContainerBuilder $container )
+    {
+        $fileName = "ez_field_templates.yml";
+        $configFile = __DIR__ . '/../Resources/config/' . $fileName;
+        $config = Yaml::parse(file_get_contents($configFile));
+
+        $container->prependExtensionConfig("ezpublish", $config);
+        $container->addResource(new FileResource($configFile));
+    }
+
     /**
      * {@inheritdoc}
      */

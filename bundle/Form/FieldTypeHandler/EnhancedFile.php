@@ -8,6 +8,7 @@ use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use eZ\Publish\SPI\FieldType\Value;
 use Netgen\Bundle\EzFormsBundle\Form\FieldTypeHandler;
 use Netgen\Bundle\EnhancedBinaryFileBundle\Core\FieldType\EnhancedBinaryFile\Value as EnhancedFileValue;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints;
@@ -68,10 +69,10 @@ class EnhancedFile extends FieldTypeHandler
         $maxFileSize = $fieldDefinition->validatorConfiguration['FileSizeValidator']['maxFileSize'];
         $allowedExtensions = $fieldDefinition->fieldSettings['allowedTypes'];
 
-        if (false !== $maxFileSize || !empty($allowedExtensions)) {
+        if (null !== $maxFileSize || !empty($allowedExtensions)) {
             $constraints = array();
 
-            if (false !== $maxFileSize && !empty($maxFileSize)) {
+            if (null !== $maxFileSize && !empty($maxFileSize)) {
                 $constraints['maxSize'] = strval($maxFileSize) . "M";
             }
 
@@ -94,6 +95,6 @@ class EnhancedFile extends FieldTypeHandler
         // EnhancedBinaryFile should not be erased (updated as empty) if nothing is selected in file input
         $this->skipEmptyUpdate($formBuilder, $fieldDefinition->identifier);
 
-        $formBuilder->add($fieldDefinition->identifier, 'file', $options);
+        $formBuilder->add($fieldDefinition->identifier, FileType::class, $options);
     }
 }

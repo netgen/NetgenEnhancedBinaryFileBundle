@@ -62,7 +62,7 @@ class Converter implements ConverterInterface
                     'FileSizeValidator' => array(
                         'maxFileSize' => (0 !== $storageDef->dataInt1
                             ? $storageDef->dataInt1
-                            : false),
+                            : null),
                     ),
                 ),
                 'fieldSettings' => new FieldSettings(array(

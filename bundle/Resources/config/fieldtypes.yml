@@ -12,3 +12,11 @@ services:
         class: eZ\Publish\Core\FieldType\BinaryFile\BinaryFileStorage\Gateway\LegacyStorage
         tags:
             - { name: ezpublish.fieldType.externalStorageHandler.gateway, alias: enhancedezbinaryfile, identifier: LegacyStorage }
+
+    ezpublish.fieldType.enhancedezbinaryfile.form_mapper:
+        class: Netgen\Bundle\EnhancedBinaryFileBundle\Core\FieldType\EnhancedBinaryFile\FormMapper
+        arguments:
+            - "@ezpublish.api.service.field_type"
+            - "@ezrepoforms.config_resolver.max_upload_size"
+        tags:
+            - { name: ez.fieldFormMapper.definition, fieldType: enhancedezbinaryfile }
