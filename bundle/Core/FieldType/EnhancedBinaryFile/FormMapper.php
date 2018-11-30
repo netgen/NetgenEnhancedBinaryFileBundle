@@ -1,10 +1,4 @@
 <?php
-/**
- *
- * Author: René Hrdina, styleflasher GmbH
- * Date: 29.11.18
- * Time: 14:16
- */
 
 namespace Netgen\Bundle\EnhancedBinaryFileBundle\Core\FieldType\EnhancedBinaryFile;
 
