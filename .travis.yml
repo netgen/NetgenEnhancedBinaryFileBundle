@@ -25,7 +25,7 @@ before_install:
 
 # install dependencies
 install:
-    - composer install
+    - COMPOSER_MEMORY_LIMIT=-1 travis_retry composer install --prefer-dist --no-interaction
 
 # execute phpunit as the script command
 script:
