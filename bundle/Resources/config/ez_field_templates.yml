@@ -3,4 +3,4 @@ system:
         fielddefinition_edit_templates:
             - template: "NetgenEnhancedBinaryFileBundle:admin:field_types.html.twig"
         field_templates:
-            - template: "NetgenEnhancedBinaryFileBundle:content_fields.html.twig"
+            - template: "NetgenEnhancedBinaryFileBundle::content_fields.html.twig"
