@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.4] - 04-12-2018
+### Fixed
+- typo in ez_field_templates.yml
+
 ## [2.0.3] - 01-12-2018
 ### Added
 - support for eZ admin v2 by @darinda
