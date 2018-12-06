@@ -6,3 +6,4 @@ services:
             - "@netgen_information_collection.repository.ez_info_collection"
             - "@ezpublish.fieldType.ezbinaryfile.io_service"
             - "@ezpublish.api.repository"
+
