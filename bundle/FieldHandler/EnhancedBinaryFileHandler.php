@@ -2,13 +2,13 @@
 
 namespace Netgen\Bundle\EnhancedBinaryFileBundle\FieldHandler;
 
-use DOMDocument;
 use eZ\Publish\API\Repository\Values\ContentType\FieldDefinition;
 use eZ\Publish\Core\FieldType\Value;
-use eZ\Publish\Core\IO\IOServiceInterface;
 use Netgen\Bundle\EnhancedBinaryFileBundle\Core\FieldType\EnhancedBinaryFile\Value as EnhancedBinaryFileValue;
+use eZ\Publish\Core\IO\IOServiceInterface;
 use Netgen\Bundle\InformationCollectionBundle\FieldHandler\Custom\CustomLegacyFieldHandlerInterface;
 use Netgen\Bundle\InformationCollectionBundle\Value\LegacyData;
+use DOMDocument;
 
 class EnhancedBinaryFileHandler implements CustomLegacyFieldHandlerInterface
 {
@@ -28,7 +28,7 @@ class EnhancedBinaryFileHandler implements CustomLegacyFieldHandlerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function supports(Value $value)
     {
@@ -36,15 +36,15 @@ class EnhancedBinaryFileHandler implements CustomLegacyFieldHandlerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function toString(Value $value, FieldDefinition $fieldDefinition)
     {
-        return (string) $value;
+        return (string)$value;
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function getLegacyValue(Value $value, FieldDefinition $fieldDefinition)
     {
@@ -58,7 +58,7 @@ class EnhancedBinaryFileHandler implements CustomLegacyFieldHandlerInterface
 
     /**
      * Create XML doc string
-     * and save file to filesystem.
+     * and save file to filesystem
      *
      * @param EnhancedBinaryFileValue $value
      * @param FieldDefinition $fieldDefinition
@@ -69,9 +69,9 @@ class EnhancedBinaryFileHandler implements CustomLegacyFieldHandlerInterface
     {
         $binaryFile = $this->storeBinaryFileToPath($value);
 
-        $doc = new DOMDocument('1.0', 'utf-8');
-        $root = $doc->createElement('binaryfile-info');
-        $binaryFileList = $doc->createElement('binaryfile-attributes');
+        $doc = new DOMDocument( '1.0', 'utf-8' );
+        $root = $doc->createElement( 'binaryfile-info' );
+        $binaryFileList = $doc->createElement( 'binaryfile-attributes' );
 
         $fileInfo = [
             'Filename' => htmlentities($binaryFile->uri),
@@ -79,9 +79,9 @@ class EnhancedBinaryFileHandler implements CustomLegacyFieldHandlerInterface
             'Size' => $value->fileSize,
         ];
 
-        foreach ($fileInfo as $key => $binaryFileItem) {
+        foreach($fileInfo as $key => $binaryFileItem) {
             $binaryFileElement = $doc->createElement($key, $binaryFileItem);
-            $binaryFileList->appendChild($binaryFileElement);
+            $binaryFileList->appendChild( $binaryFileElement );
         }
 
         $root->appendChild($binaryFileList);
@@ -91,7 +91,7 @@ class EnhancedBinaryFileHandler implements CustomLegacyFieldHandlerInterface
     }
 
     /**
-     * Stores file to filesystem.
+     * Stores file to filesystem
      *
      * @param EnhancedBinaryFileValue $value
      * @param string $storagePrefix
@@ -102,12 +102,13 @@ class EnhancedBinaryFileHandler implements CustomLegacyFieldHandlerInterface
     {
         $binaryCreateStruct = $this->IOService
             ->newBinaryCreateStructFromLocalFile($value->inputUri);
-
-        $encodedFilename = uniqid();
-        $binaryCreateStruct->id = $storagePrefix . $encodedFilename;
+	$encodedFilename = uniqid();
+	$binaryCreateStruct->id = $storagePrefix . $encodedFilename;
 
         $binaryFile = $this->IOService->createBinaryFile($binaryCreateStruct);
 
         return $binaryFile;
     }
 }
+
+
