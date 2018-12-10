@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Netgen\Bundle\EnhancedBinaryFileBundle\Controller;
 
 use eZ\Bundle\EzPublishIOBundle\BinaryStreamResponse;
