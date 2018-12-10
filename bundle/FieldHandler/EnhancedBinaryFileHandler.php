@@ -102,8 +102,8 @@ class EnhancedBinaryFileHandler implements CustomLegacyFieldHandlerInterface
     {
         $binaryCreateStruct = $this->IOService
             ->newBinaryCreateStructFromLocalFile($value->inputUri);
-	$encodedFilename = uniqid();
-	$binaryCreateStruct->id = $storagePrefix . $encodedFilename;
+        $encodedFilename = uniqid();
+        $binaryCreateStruct->id = $storagePrefix . $encodedFilename;
 
         $binaryFile = $this->IOService->createBinaryFile($binaryCreateStruct);
 
