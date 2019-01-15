@@ -46,6 +46,9 @@ class Converter implements ConverterInterface
         $storageDef->dataText1 = isset($fieldDef->fieldTypeConstraints->fieldSettings['allowedTypes']) ?
             $fieldDef->fieldTypeConstraints->fieldSettings['allowedTypes'] :
             '';
+        $storageDef->dataText2 = isset($fieldDef->fieldTypeConstraints->fieldSettings['mimeTypesMessage']) ?
+            $fieldDef->fieldTypeConstraints->fieldSettings['mimeTypesMessage'] :
+            '';
     }
 
     /**
@@ -67,6 +70,7 @@ class Converter implements ConverterInterface
                 ),
                 'fieldSettings' => new FieldSettings(array(
                     'allowedTypes' => $storageDef->dataText1,
+                    'mimeTypesMessage' => $storageDef->dataText2,
                 )),
             )
         );

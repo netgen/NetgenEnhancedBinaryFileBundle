@@ -139,6 +139,7 @@ class Type extends BinaryFileType
 
         foreach ($fieldSettings as $name => $value) {
             switch ($name) {
+                case 'mimeTypesMessage': // break omitted on purpose
                 case 'allowedTypes':
                     // Nothing to validate, just recognize this setting as known
                     break;

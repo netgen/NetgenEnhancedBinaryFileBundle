@@ -1,1 +1,2 @@
-field_definition.enhancedbinaryfile.allowedTypes: Erlaubte Dateiformate (komma-separiert)
+field_definition.enhancedbinaryfile.allowedTypes: Erlaubte Dateiformate (|-separiert)
+field_definition.enhancedbinaryfile.mimeTypesMessage: Mimetype Validierungs-Fehlertext (https://symfony.com/doc/current/reference/constraints/File.html#mimetypesmessage)

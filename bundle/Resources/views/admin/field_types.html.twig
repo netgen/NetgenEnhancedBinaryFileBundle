@@ -11,4 +11,10 @@
         {{- form_errors(form.allowedTypes) -}}
         {{- form_widget(form.allowedTypes) -}}
     </div>
+
+    <div class="enhancedezbinaryfile-validator mime-types-message{% if group_class is not empty %} {{ group_class }}{% endif %}">
+        {{- form_label(form.mimeTypesMessage) -}}
+        {{- form_errors(form.mimeTypesMessage) -}}
+        {{- form_widget(form.mimeTypesMessage) -}}
+    </div>
 {% endblock %}
