@@ -1,0 +1,9 @@
+services:
+    netgen_enhancedezbinaryfile.controller.download:
+        class: Netgen\Bundle\EnhancedBinaryFileBundle\Controller\DownloadController
+        arguments:
+            - "@netgen_information_collection.repository.ez_info_collection_attribute"
+            - "@netgen_information_collection.repository.ez_info_collection"
+            - "@ezpublish.fieldType.ezbinaryfile.io_service"
+            - "@ezpublish.api.repository"
+

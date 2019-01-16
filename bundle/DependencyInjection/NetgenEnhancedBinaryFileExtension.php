@@ -47,5 +47,6 @@ class NetgenEnhancedBinaryFileExtension extends Extension implements PrependExte
         $loader->load('storage_engines.yml');
         $loader->load('mime.yml');
         $loader->load('information_collection.yml');
+        $loader->load('services.yml');
     }
 }
