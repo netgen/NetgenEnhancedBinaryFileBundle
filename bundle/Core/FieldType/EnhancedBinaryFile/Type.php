@@ -29,6 +29,10 @@ class Type extends BinaryFileType
             'type' => 'string',
             'default' => null,
         ),
+        'mimeTypesMessage' => array(
+            'type' => 'string',
+            'default' => null
+        )
     );
 
     /**
