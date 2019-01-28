@@ -63,6 +63,7 @@ class EnhancedFileTest extends TestCase
         $fieldDefinition = new FieldDefinition(array(
             'fieldSettings' => array(
                 'allowedTypes' => 'jpg|pdf|txt',
+                'mimeTypesMessage' => null
             ),
         ));
         $lang = 'eng_US';

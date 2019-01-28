@@ -1,1 +1,2 @@
-field_definition.enhancedbinaryfile.allowedTypes: Allowed file types (comma separated)
+field_definition.enhancedbinaryfile.allowedTypes: Allowed file types (pipe-separated)
+field_definition.enhancedbinaryfile.mimeTypesMessage: Wrong mimetype error message (https://symfony.com/doc/current/reference/constraints/File.html#mimetypesmessage)

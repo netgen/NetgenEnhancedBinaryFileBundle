@@ -24,6 +24,16 @@ class FormMapper extends BinaryFileFormMapper
                     'label' => 'field_definition.enhancedbinaryfile.allowedTypes',
                     'translation_domain' => 'messages',
                 ]
+            )
+            ->add(
+                'mimeTypesMessage',
+                TextType::class,
+                [
+                    'required' => false,
+                    'property_path' => 'fieldSettings[mimeTypesMessage]',
+                    'label' => 'field_definition.enhancedbinaryfile.mimeTypesMessage',
+                    'translation_domain' => 'messages',
+                ]
             );
     }
 }

@@ -29,6 +29,10 @@ class Type extends BinaryFileType
             'type' => 'string',
             'default' => null,
         ),
+        'mimeTypesMessage' => array(
+            'type' => 'string',
+            'default' => null
+        )
     );
 
     /**
@@ -139,6 +143,7 @@ class Type extends BinaryFileType
 
         foreach ($fieldSettings as $name => $value) {
             switch ($name) {
+                case 'mimeTypesMessage': // break omitted on purpose
                 case 'allowedTypes':
                     // Nothing to validate, just recognize this setting as known
                     break;

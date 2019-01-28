@@ -68,6 +68,7 @@ class EnhancedFile extends FieldTypeHandler
 
         $maxFileSize = $fieldDefinition->validatorConfiguration['FileSizeValidator']['maxFileSize'];
         $allowedExtensions = $fieldDefinition->fieldSettings['allowedTypes'];
+        $mimeTypesMessage = $fieldDefinition->fieldSettings['mimeTypesMessage'];
 
         if (null !== $maxFileSize || !empty($allowedExtensions)) {
             $constraints = array();
@@ -87,6 +88,11 @@ class EnhancedFile extends FieldTypeHandler
                     }
                 }
                 $constraints['mimeTypes'] = $allowedMimeTypes;
+            }
+
+            if (!empty($mimeTypesMessage))
+            {
+                $constraints['mimeTypesMessage'] = $mimeTypesMessage;
             }
 
             $options['constraints'][] = new Constraints\File($constraints);
