@@ -20,12 +20,14 @@ class NetgenEnhancedBinaryFileExtension extends Extension implements PrependExte
      */
     public function prepend(ContainerBuilder $container)
     {
-        $fileName = 'ez_field_templates.yml';
-        $configFile = __DIR__ . '/../Resources/config/' . $fileName;
-        $config = Yaml::parse(file_get_contents($configFile));
+        if (class_exists(\EzSystems\RepositoryFormsBundle\EzSystemsRepositoryFormsBundle::class)) {
+            $fileName = 'ez_field_templates.yml';
+            $configFile = __DIR__ . '/../Resources/config/' . $fileName;
+            $config = Yaml::parse(file_get_contents($configFile));
 
-        $container->prependExtensionConfig('ezpublish', $config);
-        $container->addResource(new FileResource($configFile));
+            $container->prependExtensionConfig('ezpublish', $config);
+            $container->addResource(new FileResource($configFile));
+        }
     }
 
     /**
@@ -41,6 +43,10 @@ class NetgenEnhancedBinaryFileExtension extends Extension implements PrependExte
             $loader->load('fieldtypes_after_611.yml');
         } else {
             $loader->load('fieldtypes_before_611.yml');
+        }
+
+        if (class_exists(\EzSystems\RepositoryFormsBundle\EzSystemsRepositoryFormsBundle::class)) {
+            $loader->load('repository_forms.yml');
         }
         $loader->load('fieldtypes.yml');
         $loader->load('field_type_handlers.yml');

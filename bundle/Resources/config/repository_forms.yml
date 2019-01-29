@@ -1,0 +1,8 @@
+services:
+    ezpublish.fieldType.enhancedezbinaryfile.form_mapper:
+        class: Netgen\Bundle\EnhancedBinaryFileBundle\Core\FieldType\EnhancedBinaryFile\FormMapper
+        arguments:
+        - "@ezpublish.api.service.field_type"
+        - "@ezrepoforms.config_resolver.max_upload_size"
+        tags:
+        - { name: ez.fieldFormMapper.definition, fieldType: enhancedezbinaryfile }
