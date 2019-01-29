@@ -6,6 +6,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+
+## [2.1.0] - 29-01-2019
+### Added
+- DownloadController by @darinda
+- Validation messages by @darinda
+- Updated php_cs configuration
+
 ## [2.0.4] - 04-12-2018
 ### Fixed
 - typo in ez_field_templates.yml

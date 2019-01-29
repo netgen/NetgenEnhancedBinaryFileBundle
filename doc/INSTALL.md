@@ -30,6 +30,13 @@ public function registerBundles()
 
     return $bundles;
 }
+```
+
+### Include the routing config in your routing.yml
+
+```yml
+_netgen_enhancedezbinaryfile:
+    resource: '@NetgenEnhancedBinaryFileBundle/Resources/config/routing.yml'
 ``` 
 
 ### Clear the caches
@@ -41,11 +48,3 @@ $ php app/console cache:clear
 ```
 
 For more detailed configuration, please check [documentation](DOC.md).
-
-### Include the routing config in your routing.yml
-
-```yml
-_netgen_enhancedezbinaryfile:
-    resource: '@NetgenEnhancedBinaryFileBundle/Resources/config/routing.yml'
-```
-

@@ -7,7 +7,6 @@ NetgenEnhancedBinaryFileBundle
 [![Downloads](https://img.shields.io/packagist/dt/netgen/enhanced-binary-file-bundle.svg?style=flat-square)](https://packagist.org/packages/netgen/enhanced-binary-file-bundle/stats)
 [![Latest stable](https://img.shields.io/packagist/v/netgen/enhanced-binary-file-bundle.svg?style=flat-square)](https://packagist.org/packages/netgen/enhanced-binary-file-bundle)
 [![License](https://img.shields.io/github/license/netgen/NetgenEnhancedBinaryFileBundle.svg?style=flat-square)](LICENSE)
-[![PHP](https://img.shields.io/badge/php-%3E%3D%205.6-8892BF.svg?style=flat-square)](https://secure.php.net/)
 
 NetgenEnhancedBinaryFileBundle is an eZ Publish 5/Platform bundle that provides a field type that reimplements `ezbinaryfile` field type.
 
@@ -18,13 +17,15 @@ However, The eZ Publish 4 extension is still required to populate field type thr
 When you install this bundle with Composer, the eZ Publish 4 extension is installed automatically but not activated in settings.
 
 License, docs and installation instructions
--------------------------------------
+-------------------------------------------
 
 [License](LICENSE)
 
 [Copyright](doc/COPYRIGHT)
 
 [Installation instructions](doc/INSTALL.md)
+
+[Upgrade](doc/UPGRADE.md)
 
 [Documentation](doc/DOC.md)
 
