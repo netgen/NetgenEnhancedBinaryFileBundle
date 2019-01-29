@@ -13,10 +13,10 @@ class ConfigurationTest extends TestCase
     public function testConfigurationValuesAreOkAndValid()
     {
         $this->assertConfigurationIsValid(
-            array(
-                'netgen_enhanced_ez_binary_file' => array(
-                ),
-            )
+            [
+                'netgen_enhanced_ez_binary_file' => [
+                ],
+            ]
         );
     }
 

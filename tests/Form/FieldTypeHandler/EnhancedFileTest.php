@@ -60,12 +60,12 @@ class EnhancedFileTest extends TestCase
     public function testBuildFieldCreateForm()
     {
         $formBuilder = $this->createMock(FormBuilderInterface::class);
-        $fieldDefinition = new FieldDefinition(array(
-            'fieldSettings' => array(
+        $fieldDefinition = new FieldDefinition([
+            'fieldSettings' => [
                 'allowedTypes' => 'jpg|pdf|txt',
-                'mimeTypesMessage' => null
-            ),
-        ));
+                'mimeTypesMessage' => null,
+            ],
+        ]);
         $lang = 'eng_US';
 
         $this->configResolver->expects($this->exactly(3))
@@ -83,7 +83,7 @@ class EnhancedFileTest extends TestCase
         $this->configResolver->expects($this->once())
             ->method('getParameter')
             ->with('txt.Types', 'mime')
-            ->willReturn(array('text/plain'));
+            ->willReturn(['text/plain']);
 
         $this->handler->buildFieldCreateForm($formBuilder, $fieldDefinition, $lang);
     }

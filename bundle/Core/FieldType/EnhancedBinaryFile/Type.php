@@ -24,16 +24,16 @@ class Type extends BinaryFileType
      *
      * @var array
      */
-    protected $settingsSchema = array(
-        'allowedTypes' => array(
+    protected $settingsSchema = [
+        'allowedTypes' => [
             'type' => 'string',
             'default' => null,
-        ),
-        'mimeTypesMessage' => array(
+        ],
+        'mimeTypesMessage' => [
             'type' => 'string',
-            'default' => null
-        )
-    );
+            'default' => null,
+        ],
+    ];
 
     /**
      * @var \eZ\Publish\SPI\IO\MimeTypeDetector
@@ -89,7 +89,7 @@ class Type extends BinaryFileType
      */
     public function validate(FieldDefinition $fieldDefinition, SPIValue $fieldValue)
     {
-        $errors = array();
+        $errors = [];
 
         if ($this->isEmptyValue($fieldValue)) {
             return $errors;
@@ -110,15 +110,15 @@ class Type extends BinaryFileType
             }
         }
 
-        return array(
+        return [
             new ValidationError(
                 'This mimeType is not allowed %mimeType%.',
                 'These mimeTypes are not allowed %mimeType%.',
-                array(
+                [
                     'mimeType' => $mimeType,
-                )
+                ]
             ),
-        );
+        ];
     }
 
     /**
@@ -133,7 +133,7 @@ class Type extends BinaryFileType
      */
     public function validateFieldSettings($fieldSettings)
     {
-        $validationErrors = array();
+        $validationErrors = [];
 
         if (!is_array($fieldSettings)) {
             $validationErrors[] = new ValidationError('Field settings must be in form of an array');
@@ -151,9 +151,9 @@ class Type extends BinaryFileType
                     $validationErrors[] = new ValidationError(
                         "Setting '%setting%' is unknown",
                         null,
-                        array(
+                        [
                             'setting' => $name,
-                        )
+                        ]
                     );
                     break;
             }

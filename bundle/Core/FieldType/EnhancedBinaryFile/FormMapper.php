@@ -3,7 +3,6 @@
 namespace Netgen\Bundle\EnhancedBinaryFileBundle\Core\FieldType\EnhancedBinaryFile;
 
 use EzSystems\RepositoryForms\Data\FieldDefinitionData;
-use EzSystems\RepositoryForms\FieldType\FieldDefinitionFormMapperInterface;
 use EzSystems\RepositoryForms\FieldType\Mapper\BinaryFileFormMapper;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;

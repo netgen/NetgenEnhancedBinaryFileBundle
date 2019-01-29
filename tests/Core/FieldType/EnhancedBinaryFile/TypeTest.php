@@ -52,39 +52,39 @@ class TypeTest extends TestCase
 
     public function testValidate()
     {
-        $fieldDefinition = new FieldDefinition(array(
-            'fieldSettings' => array(
+        $fieldDefinition = new FieldDefinition([
+            'fieldSettings' => [
                 'allowedTypes' => 'jpg|pdf|txt',
-            ),
-        ));
+            ],
+        ]);
 
-        $value = new Value(array(
+        $value = new Value([
             'path' => $this->file,
-        ));
+        ]);
 
         $this->mimeTypeDetector->expects($this->once())
             ->method('getFromPath')
             ->with($this->file)
             ->willReturn('text/plain');
 
-        $expected = array(
+        $expected = [
             new ValidationError(
                 'This mimeType is not allowed %mimeType%.',
                 'These mimeTypes are not allowed %mimeType%.',
-                array('mimeType' => 'text/plain')
+                ['mimeType' => 'text/plain']
             ),
-        );
+        ];
 
         $this->assertEquals($expected, $this->type->validate($fieldDefinition, $value));
     }
 
     public function testValidateWithEmptyValue()
     {
-        $fieldDefinition = new FieldDefinition(array(
-            'fieldSettings' => array(
+        $fieldDefinition = new FieldDefinition([
+            'fieldSettings' => [
                 'allowedTypes' => 'jpg|pdf|txt',
-            ),
-        ));
+            ],
+        ]);
 
         $value = new Value();
 
@@ -93,15 +93,15 @@ class TypeTest extends TestCase
 
     public function testValidateWithMineTypesFromConfig()
     {
-        $fieldDefinition = new FieldDefinition(array(
-            'fieldSettings' => array(
+        $fieldDefinition = new FieldDefinition([
+            'fieldSettings' => [
                 'allowedTypes' => 'jpg|pdf|txt',
-            ),
-        ));
+            ],
+        ]);
 
-        $value = new Value(array(
+        $value = new Value([
             'path' => $this->file,
-        ));
+        ]);
 
         $this->mimeTypeDetector->expects($this->once())
             ->method('getFromPath')
@@ -123,22 +123,22 @@ class TypeTest extends TestCase
         $this->configResolver->expects($this->once())
             ->method('getParameter')
             ->with('txt.Types', 'mime')
-            ->willReturn(array('text/plain'));
+            ->willReturn(['text/plain']);
 
         $this->type->validate($fieldDefinition, $value);
     }
 
     public function testValidateWithNoMimeTypesFromConfig()
     {
-        $fieldDefinition = new FieldDefinition(array(
-            'fieldSettings' => array(
+        $fieldDefinition = new FieldDefinition([
+            'fieldSettings' => [
                 'allowedTypes' => 'jpg|pdf|txt',
-            ),
-        ));
+            ],
+        ]);
 
-        $value = new Value(array(
+        $value = new Value([
             'path' => $this->file,
-        ));
+        ]);
 
         $this->mimeTypeDetector->expects($this->once())
             ->method('getFromPath')
@@ -160,14 +160,14 @@ class TypeTest extends TestCase
         $this->configResolver->expects($this->once())
             ->method('getParameter')
             ->with('txt.Types', 'mime')
-            ->willReturn(array('something'));
+            ->willReturn(['something']);
 
         $this->type->validate($fieldDefinition, $value);
     }
 
     public function testValidateFieldSettingsWithEmptyArray()
     {
-        $result = $this->type->validateFieldSettings(array());
+        $result = $this->type->validateFieldSettings([]);
         $this->assertInternalType('array', $result);
         $this->assertEmpty($result);
     }
@@ -182,10 +182,10 @@ class TypeTest extends TestCase
 
     public function testValidateFieldSettingsWithFieldSettings()
     {
-        $fieldSettings = array(
-            'allowedTypes' => array(),
-            'some_settings' => array(),
-        );
+        $fieldSettings = [
+            'allowedTypes' => [],
+            'some_settings' => [],
+        ];
         $result = $this->type->validateFieldSettings($fieldSettings);
         $this->assertInternalType('array', $result);
         $this->assertNotEmpty($result);
@@ -193,7 +193,7 @@ class TypeTest extends TestCase
             new ValidationError(
                 "Setting '%setting%' is unknown",
                 null,
-                array('setting' => 'some_settings')
+                ['setting' => 'some_settings']
             ),
             $result[0]
         );
@@ -201,7 +201,7 @@ class TypeTest extends TestCase
 
     public function testFromHash()
     {
-        $result = $this->type->fromHash(array());
+        $result = $this->type->fromHash([]);
 
         $this->assertInstanceOf(Value::class, $result);
         $this->assertEquals(new Value(), $result);

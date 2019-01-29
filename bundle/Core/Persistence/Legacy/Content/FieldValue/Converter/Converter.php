@@ -60,19 +60,19 @@ class Converter implements ConverterInterface
     public function toFieldDefinition(StorageFieldDefinition $storageDef, FieldDefinition $fieldDef)
     {
         $fieldDef->fieldTypeConstraints = new FieldTypeConstraints(
-            array(
-                'validators' => array(
-                    'FileSizeValidator' => array(
+            [
+                'validators' => [
+                    'FileSizeValidator' => [
                         'maxFileSize' => (0 !== $storageDef->dataInt1
                             ? $storageDef->dataInt1
                             : null),
-                    ),
-                ),
-                'fieldSettings' => new FieldSettings(array(
+                    ],
+                ],
+                'fieldSettings' => new FieldSettings([
                     'allowedTypes' => $storageDef->dataText1,
                     'mimeTypesMessage' => $storageDef->dataText2,
-                )),
-            )
+                ]),
+            ]
         );
     }
 

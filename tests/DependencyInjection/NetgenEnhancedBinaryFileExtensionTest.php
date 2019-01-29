@@ -14,13 +14,13 @@ class NetgenEnhancedBinaryFileExtensionTest extends AbstractExtensionTestCase
 
     protected function getContainerExtensions()
     {
-        return array(
+        return [
             new NetgenEnhancedBinaryFileExtension(),
-        );
+        ];
     }
 
     protected function getMinimalConfiguration()
     {
-        return array();
+        return [];
     }
 }

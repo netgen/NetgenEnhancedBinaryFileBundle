@@ -68,21 +68,21 @@ class ConverterTest extends TestCase
     public function testToStorageFieldDefinition()
     {
         $fieldDefinition = new FieldDefinition();
-        $fieldDefinition->fieldTypeConstraints->validators = array(
-            'FileSizeValidator' => array(
+        $fieldDefinition->fieldTypeConstraints->validators = [
+            'FileSizeValidator' => [
                 'maxFileSize' => 14,
-            ),
-        );
-        $fieldDefinition->fieldTypeConstraints->fieldSettings = array(
-            'allowedTypes' => array(
+            ],
+        ];
+        $fieldDefinition->fieldTypeConstraints->fieldSettings = [
+            'allowedTypes' => [
                 'text/plain',
-            ),
-        );
+            ],
+        ];
         $storage = new StorageFieldDefinition();
         $this->converter->toStorageFieldDefinition($fieldDefinition, $storage);
 
         $this->assertEquals(14, $storage->dataInt1);
-        $this->assertEquals(array('text/plain'), $storage->dataText1);
+        $this->assertEquals(['text/plain'], $storage->dataText1);
     }
 
     public function testToFieldDefinition()
@@ -93,7 +93,7 @@ class ConverterTest extends TestCase
         $this->converter->toFieldDefinition($storage, $fieldDefinition);
 
         $this->assertInstanceOf(FieldTypeConstraints::class, $fieldDefinition->fieldTypeConstraints);
-        $this->assertEquals(false, $fieldDefinition->fieldTypeConstraints->validators['FileSizeValidator']['maxFileSize']);
+        $this->assertNull($fieldDefinition->fieldTypeConstraints->validators['FileSizeValidator']['maxFileSize']);
         $this->assertEquals('', $fieldDefinition->fieldTypeConstraints->fieldSettings['allowedTypes']);
     }
 

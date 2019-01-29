@@ -14,17 +14,17 @@ class NetgenEnhancedBinaryFileExtension extends Extension implements PrependExte
 {
     /**
      * Preprend ezpublish configuration to make the field templates
-     * visibile to the admin template engine
+     * visibile to the admin template engine.
      *
      * @param ContainerBuilder $container
      */
-    public function prepend( ContainerBuilder $container )
+    public function prepend(ContainerBuilder $container)
     {
-        $fileName = "ez_field_templates.yml";
+        $fileName = 'ez_field_templates.yml';
         $configFile = __DIR__ . '/../Resources/config/' . $fileName;
         $config = Yaml::parse(file_get_contents($configFile));
 
-        $container->prependExtensionConfig("ezpublish", $config);
+        $container->prependExtensionConfig('ezpublish', $config);
         $container->addResource(new FileResource($configFile));
     }
 

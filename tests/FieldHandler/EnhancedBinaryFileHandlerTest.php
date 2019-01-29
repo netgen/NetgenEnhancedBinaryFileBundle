@@ -2,14 +2,14 @@
 
 namespace Netgen\Bundle\EnhancedBinaryFileBundle\Tests\FieldHandler;
 
+use eZ\Publish\Core\FieldType\Integer\Value as IntValue;
 use eZ\Publish\Core\IO\IOServiceInterface;
+use eZ\Publish\Core\IO\Values\BinaryFile;
 use eZ\Publish\Core\IO\Values\BinaryFileCreateStruct;
 use eZ\Publish\Core\Repository\Values\ContentType\FieldDefinition;
+use Netgen\Bundle\EnhancedBinaryFileBundle\Core\FieldType\EnhancedBinaryFile\Value;
 use Netgen\Bundle\EnhancedBinaryFileBundle\FieldHandler\EnhancedBinaryFileHandler;
 use Netgen\Bundle\InformationCollectionBundle\FieldHandler\Custom\CustomLegacyFieldHandlerInterface;
-use Netgen\Bundle\EnhancedBinaryFileBundle\Core\FieldType\EnhancedBinaryFile\Value;
-use eZ\Publish\Core\FieldType\Integer\Value as IntValue;
-use eZ\Publish\Core\IO\Values\BinaryFile;
 use PHPUnit\Framework\TestCase;
 
 class EnhancedBinaryFileHandlerTest extends TestCase
@@ -49,7 +49,7 @@ class EnhancedBinaryFileHandlerTest extends TestCase
             ]
         );
 
-        $this->assertEquals("", $this->handler->toString($file, new FieldDefinition()));
+        $this->assertEquals('', $this->handler->toString($file, new FieldDefinition()));
     }
 
     public function testGetLegacyValue()

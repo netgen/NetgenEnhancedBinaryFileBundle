@@ -6,8 +6,8 @@ use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\ContentType\FieldDefinition;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use eZ\Publish\SPI\FieldType\Value;
-use Netgen\Bundle\EzFormsBundle\Form\FieldTypeHandler;
 use Netgen\Bundle\EnhancedBinaryFileBundle\Core\FieldType\EnhancedBinaryFile\Value as EnhancedFileValue;
+use Netgen\Bundle\EzFormsBundle\Form\FieldTypeHandler;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -71,16 +71,16 @@ class EnhancedFile extends FieldTypeHandler
         $mimeTypesMessage = $fieldDefinition->fieldSettings['mimeTypesMessage'];
 
         if (null !== $maxFileSize || !empty($allowedExtensions)) {
-            $constraints = array();
+            $constraints = [];
 
             if (null !== $maxFileSize && !empty($maxFileSize)) {
-                $constraints['maxSize'] = strval($maxFileSize) . "M";
+                $constraints['maxSize'] = (string) $maxFileSize . 'M';
             }
 
             if (!empty($allowedExtensions)) {
                 $allowedExtensions = explode('|', $allowedExtensions);
 
-                $allowedMimeTypes = array();
+                $allowedMimeTypes = [];
 
                 foreach ($allowedExtensions as $allowedExtension) {
                     if ($this->configResolver->hasParameter("{$allowedExtension}.Types", 'mime')) {
@@ -90,8 +90,7 @@ class EnhancedFile extends FieldTypeHandler
                 $constraints['mimeTypes'] = $allowedMimeTypes;
             }
 
-            if (!empty($mimeTypesMessage))
-            {
+            if (!empty($mimeTypesMessage)) {
                 $constraints['mimeTypesMessage'] = $mimeTypesMessage;
             }
 

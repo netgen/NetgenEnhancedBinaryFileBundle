@@ -42,6 +42,7 @@ return PhpCsFixer\Config::create()
         'ternary_to_null_coalescing' => true,
         'visibility_required' => ['elements' => ['property', 'method', 'const']],
         'yoda_style' => false,
+        'single_blank_line_at_eof' => true,
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()
