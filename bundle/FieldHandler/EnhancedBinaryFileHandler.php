@@ -80,7 +80,9 @@ class EnhancedBinaryFileHandler implements CustomLegacyFieldHandlerInterface
         ];
 
         foreach ($fileInfo as $key => $binaryFileItem) {
-            $binaryFileElement = $doc->createElement($key, $binaryFileItem);
+            $cdataElement = $doc->createCDATASection($binaryFileItem);
+            $binaryFileElement = $doc->createElement($key);
+            $binaryFileElement->appendChild($cdataElement);
             $binaryFileList->appendChild($binaryFileElement);
         }
 
