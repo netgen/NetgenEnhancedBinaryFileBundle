@@ -82,7 +82,7 @@ class DownloadController
         $filePath = $filePathNodes->item(0)->textContent;
         $fileName = basename($filePath);
 
-        $originalFilename = $originalFilenameNodes->length ? $originalFilenameNodes->item(0)->textContent : $fileName;
+        $originalFilename = html_entity_decode($originalFilenameNodes->length ? $originalFilenameNodes->item(0)->textContent : $fileName);
 
         $binaryFile = $this->ioService->loadBinaryFile('collected' . \DIRECTORY_SEPARATOR . $fileName);
 
