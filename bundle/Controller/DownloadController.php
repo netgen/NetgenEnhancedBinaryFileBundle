@@ -2,25 +2,22 @@
 
 namespace Netgen\Bundle\EnhancedBinaryFileBundle\Controller;
 
+use eZ\Bundle\EzPublishCoreBundle\Controller;
 use eZ\Bundle\EzPublishIOBundle\BinaryStreamResponse;
+use eZ\Publish\Core\Event\Repository;
 use eZ\Publish\Core\IO\IOServiceInterface;
-use eZ\Publish\Core\SignalSlot\Repository;
-use Netgen\Bundle\InformationCollectionBundle\Entity\EzInfoCollection;
-use Netgen\Bundle\InformationCollectionBundle\Entity\EzInfoCollectionAttribute;
-use Netgen\Bundle\InformationCollectionBundle\Repository\EzInfoCollectionAttributeRepository;
-use Netgen\Bundle\InformationCollectionBundle\Repository\EzInfoCollectionRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Netgen\InformationCollection\Doctrine\Entity\EzInfoCollection;
+use Netgen\InformationCollection\Doctrine\Entity\EzInfoCollectionAttribute;
+use Netgen\InformationCollection\Doctrine\Repository\EzInfoCollectionAttributeRepository;
+use Netgen\InformationCollection\Doctrine\Repository\EzInfoCollectionRepository;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class DownloadController extends AbstractController
+class DownloadController extends Controller
 {
     private $infocollectionAttributeRepository;
-
     private $infocollectionRepository;
-
     private $ioService;
-
     private $repository;
 
     public function __construct(

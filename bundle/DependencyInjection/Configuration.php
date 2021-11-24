@@ -12,7 +12,7 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder('netgen_enhanced_ez_binary_file');
+        $treeBuilder = new TreeBuilder("netgen_enhanced_ez_binary_file");
         $rootNode = $treeBuilder->getRootNode();
 
         return $treeBuilder;

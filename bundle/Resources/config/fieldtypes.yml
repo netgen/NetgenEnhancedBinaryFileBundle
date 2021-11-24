@@ -3,7 +3,7 @@ services:
         class: Netgen\Bundle\EnhancedBinaryFileBundle\Core\FieldType\EnhancedBinaryFile\Type
         parent: ezpublish.fieldType
         arguments:
-            - "@ezpublish.core.io.mimetypedetector"
+            - "@ezpublish.core.io.mimeTypeDetector"
             - "@ezpublish.config.resolver"
         tags:
             - { name: ezpublish.fieldType, alias: enhancedezbinaryfile }

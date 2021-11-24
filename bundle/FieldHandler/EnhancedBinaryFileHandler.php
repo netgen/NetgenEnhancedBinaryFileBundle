@@ -7,8 +7,8 @@ use eZ\Publish\API\Repository\Values\ContentType\FieldDefinition;
 use eZ\Publish\Core\FieldType\Value;
 use eZ\Publish\Core\IO\IOServiceInterface;
 use Netgen\Bundle\EnhancedBinaryFileBundle\Core\FieldType\EnhancedBinaryFile\Value as EnhancedBinaryFileValue;
-use Netgen\Bundle\InformationCollectionBundle\FieldHandler\Custom\CustomLegacyFieldHandlerInterface;
-use Netgen\Bundle\InformationCollectionBundle\Value\LegacyData;
+use Netgen\InformationCollection\API\FieldHandler\CustomLegacyFieldHandlerInterface;
+use Netgen\InformationCollection\API\Value\Legacy\FieldValue as LegacyData;
 
 class EnhancedBinaryFileHandler implements CustomLegacyFieldHandlerInterface
 {
@@ -30,7 +30,7 @@ class EnhancedBinaryFileHandler implements CustomLegacyFieldHandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function supports(Value $value)
+    public function supports(Value $value): bool
     {
         return $value instanceof EnhancedBinaryFileValue;
     }
@@ -38,7 +38,7 @@ class EnhancedBinaryFileHandler implements CustomLegacyFieldHandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function toString(Value $value, FieldDefinition $fieldDefinition)
+    public function toString(Value $value, FieldDefinition $fieldDefinition): string
     {
         return (string) $value;
     }
@@ -46,12 +46,10 @@ class EnhancedBinaryFileHandler implements CustomLegacyFieldHandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function getLegacyValue(Value $value, FieldDefinition $fieldDefinition)
+    public function getLegacyValue(Value $value, FieldDefinition $fieldDefinition): LegacyData
     {
         return new LegacyData(
             $fieldDefinition->id,
-            0,
-            0,
             $this->store($value, $fieldDefinition)
         );
     }

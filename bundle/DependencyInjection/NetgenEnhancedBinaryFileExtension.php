@@ -2,6 +2,7 @@
 
 namespace Netgen\Bundle\EnhancedBinaryFileBundle\DependencyInjection;
 
+use Netgen\Bundle\EnhancedBinaryFileBundle\NetgenEnhancedBinaryFileBundle;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -13,21 +14,27 @@ use Symfony\Component\Yaml\Yaml;
 class NetgenEnhancedBinaryFileExtension extends Extension implements PrependExtensionInterface
 {
     /**
-     * Preprend ezpublish configuration to make the field templates
+     * Preprend ezplatform configuration to make the field templates
      * visibile to the admin template engine.
      *
      * @param ContainerBuilder $container
      */
     public function prepend(ContainerBuilder $container)
     {
-        if (class_exists(\EzSystems\RepositoryFormsBundle\EzSystemsRepositoryFormsBundle::class)) {
-            $fileName = 'ez_field_templates.yml';
-            $configFile = __DIR__ . '/../Resources/config/' . $fileName;
-            $config = Yaml::parse(file_get_contents($configFile));
+        $refl = new \ReflectionClass(NetgenEnhancedBinaryFileBundle::class);
+        $path = \dirname($refl->getFileName()).'/Resources/views';
 
-            $container->prependExtensionConfig('ezpublish', $config);
-            $container->addResource(new FileResource($configFile));
-        }
+        $container->prependExtensionConfig('twig', ['paths' => [
+            $path => 'NetgenEnhancedBinaryFileBundle'
+        ]]);
+        
+        $fileName = 'ez_field_templates.yml';
+        $configFile = __DIR__ . '/../Resources/config/' . $fileName;
+        $config = Yaml::parse(file_get_contents($configFile));
+
+        $container->prependExtensionConfig('ezpublish', $config);
+        $container->addResource(new FileResource($configFile));
+        
     }
 
     /**
@@ -45,9 +52,9 @@ class NetgenEnhancedBinaryFileExtension extends Extension implements PrependExte
             $loader->load('fieldtypes_before_611.yml');
         }
 
-        if (class_exists(\EzSystems\RepositoryFormsBundle\EzSystemsRepositoryFormsBundle::class)) {
-            $loader->load('repository_forms.yml');
-        }
+
+        $loader->load('repository_forms.yml');
+
         $loader->load('fieldtypes.yml');
         $loader->load('field_type_handlers.yml');
         $loader->load('storage_engines.yml');
