@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [2.1.1] - 05-17-2022
+### Added
+- Support for newer NetgenInformationCollectionBundle versions 
+
 ## [2.1.0] - 02-01-2019
 ### Added
 - DownloadController by @darinda

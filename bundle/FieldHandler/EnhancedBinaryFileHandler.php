@@ -57,6 +57,14 @@ class EnhancedBinaryFileHandler implements CustomLegacyFieldHandlerInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function fromLegacyValue(LegacyData $legacyData, FieldDefinition $fieldDefinition)
+    {
+
+    }
+
+    /**
      * Create XML doc string
      * and save file to filesystem.
      *
