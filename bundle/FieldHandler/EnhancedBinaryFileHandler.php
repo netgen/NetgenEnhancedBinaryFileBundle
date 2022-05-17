@@ -61,7 +61,6 @@ class EnhancedBinaryFileHandler implements CustomLegacyFieldHandlerInterface
      */
     public function fromLegacyValue(LegacyData $legacyData, FieldDefinition $fieldDefinition)
     {
-
     }
 
     /**
