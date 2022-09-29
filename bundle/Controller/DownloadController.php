@@ -4,13 +4,16 @@ namespace Netgen\Bundle\EnhancedBinaryFileBundle\Controller;
 
 use eZ\Bundle\EzPublishCoreBundle\Controller;
 use eZ\Bundle\EzPublishIOBundle\BinaryStreamResponse;
-use eZ\Publish\Core\Event\Repository;
+use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\Core\IO\IOServiceInterface;
 use Netgen\InformationCollection\Doctrine\Entity\EzInfoCollection;
 use Netgen\InformationCollection\Doctrine\Entity\EzInfoCollectionAttribute;
 use Netgen\InformationCollection\Doctrine\Repository\EzInfoCollectionAttributeRepository;
 use Netgen\InformationCollection\Doctrine\Repository\EzInfoCollectionRepository;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class DownloadController extends Controller
@@ -18,21 +21,19 @@ class DownloadController extends Controller
     private $infocollectionAttributeRepository;
     private $infocollectionRepository;
     private $ioService;
-    private $repository;
 
     public function __construct(
         EzInfoCollectionAttributeRepository $infocollectionAttributeRepository,
         EzInfoCollectionRepository $infocollectionRepository,
-        IOServiceInterface $ioService,
-        Repository $repository
+        IOServiceInterface $ioService
     ) {
         $this->infocollectionAttributeRepository = $infocollectionAttributeRepository;
         $this->infocollectionRepository = $infocollectionRepository;
         $this->ioService = $ioService;
-        $this->repository = $repository;
     }
 
     /**
+     * @Route(methods={"GET"}, name="netgen_enhancedezbinaryfile.route.download_binary_file", path="/netgen/enhancedezbinaryfile/download/{infocollectionAttributeId}")
      * @param int $infocollectionAttributeId
      *
      * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentValue
@@ -55,9 +56,9 @@ class DownloadController extends Controller
         $infocollection = $this->infocollectionRepository->find($infocollectionAttribute->getInformationCollectionId());
 
         $contentId = $infocollection->getContentObjectId();
-        $content = $this->repository->getContentService()->loadContent($contentId);
+        $content = $this->getRepository()->getContentService()->loadContent($contentId);
 
-        if (!$this->repository->getPermissionResolver()->canUser('infocollector', 'read', $content)) {
+        if (!$this->getRepository()->getPermissionResolver()->canUser('infocollector', 'read', $content)) {
             throw new AccessDeniedException('Access denied.');
         }
 
