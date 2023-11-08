@@ -2,14 +2,14 @@
 
 namespace Netgen\Bundle\EnhancedBinaryFileBundle\Core\FieldType\EnhancedBinaryFile;
 
-use EzSystems\RepositoryForms\Data\FieldDefinitionData;
-use EzSystems\RepositoryForms\FieldType\Mapper\BinaryFileFormMapper;
+use EzSystems\EzPlatformAdminUi\FieldType\Mapper\BinaryFileFormMapper;
+use EzSystems\EzPlatformAdminUi\Form\Data\FieldDefinitionData;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
 
-class FormMapper extends BinaryFileFormMapper
+class FieldTypeFormMapper extends BinaryFileFormMapper
 {
-    public function mapFieldDefinitionForm(FormInterface $fieldDefinitionForm, FieldDefinitionData $data)
+    public function mapFieldDefinitionForm(FormInterface $fieldDefinitionForm, FieldDefinitionData $data): void
     {
         parent::mapFieldDefinitionForm($fieldDefinitionForm, $data);
 

@@ -18,7 +18,7 @@
     ],
     "require": {
         "ezsystems/ezpublish-kernel": "*",
-        "netgen/information-collection-bundle": "^1.1"
+        "netgen/information-collection-bundle": "^2.0"
     },
     "require-dev": {
         "ezsystems/ezpublish-kernel": "~6.0",

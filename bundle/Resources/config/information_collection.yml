@@ -1,6 +1,6 @@
 services:
-    ezpublish.enhancedezbinaryfile.information_collection.field_handler:
-        class: Netgen\Bundle\EnhancedBinaryFileBundle\FieldHandler\EnhancedBinaryFileHandler
+    Netgen\Bundle\EnhancedBinaryFileBundle\FieldHandler\EnhancedBinaryFileHandler:
+        autowire: true
         arguments:
             - "@ezpublish.core.io.service"
         tags:
